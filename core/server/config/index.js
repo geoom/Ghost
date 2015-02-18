@@ -219,7 +219,7 @@ ConfigManager.prototype.load = function (configFilePath) {
 
     self._config.paths.config = process.env.GHOST_CONFIG || configFilePath || self._config.paths.config;
 
-    /* Check for config file and copy from config.example.js
+    /* Check for config file and copy from config.js
         if one doesn't exist. After that, start the server. */
     return new Promise(function (resolve, reject) {
         fs.exists(self._config.paths.config, function (exists) {
@@ -238,7 +238,7 @@ ConfigManager.prototype.load = function (configFilePath) {
     });
 };
 
-/* Check for config file and copy from config.example.js
+/* Check for config file and copy from config.js
     if one doesn't exist. After that, start the server. */
 ConfigManager.prototype.writeFile = function () {
     var configPath = this._config.paths.config,
@@ -253,22 +253,22 @@ ConfigManager.prototype.writeFile = function () {
             if (!templateExists) {
                 error = new Error('Could not locate a configuration file.');
                 error.context = appRoot;
-                error.help = 'Please check your deployment for config.js or config.example.js.';
+                error.help = 'Please check your deployment for config.js or config.js.';
 
                 return reject(error);
             }
 
-            // Copy config.example.js => config.js
+            // Copy config.js => config.js
             read = fs.createReadStream(configExamplePath);
             read.on('error', function (err) {
-                errors.logError(new Error('Could not open config.example.js for read.'), appRoot, 'Please check your deployment for config.js or config.example.js.');
+                errors.logError(new Error('Could not open config.js for read.'), appRoot, 'Please check your deployment for config.js or config.js.');
 
                 reject(err);
             });
 
             write = fs.createWriteStream(configPath);
             write.on('error', function (err) {
-                errors.logError(new Error('Could not open config.js for write.'), appRoot, 'Please check your deployment for config.js or config.example.js.');
+                errors.logError(new Error('Could not open config.js for write.'), appRoot, 'Please check your deployment for config.js or config.js.');
 
                 reject(err);
             });
@@ -398,7 +398,7 @@ ConfigManager.prototype.displayDeprecated = function (item, properties, address)
 };
 
 if (testingEnvs.indexOf(process.env.NODE_ENV) > -1) {
-    defaultConfig  = require('../../../config.example')[process.env.NODE_ENV];
+    defaultConfig  = require('../../../config.js')[process.env.NODE_ENV];
 }
 
 module.exports = new ConfigManager(defaultConfig);

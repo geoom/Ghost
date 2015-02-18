@@ -11,7 +11,7 @@ var should         = require('should'),
     testUtils      = require('../utils'),
 
     // Thing we are testing
-    defaultConfig  = require('../../../config.example')[process.env.NODE_ENV],
+    defaultConfig  = require('../../../config.js')[process.env.NODE_ENV],
     config         = require('../../server/config'),
     origConfig     = _.cloneDeep(config),
     // storing current environment
@@ -292,7 +292,7 @@ describe('Config', function () {
             readFileStub.restore();
 
             // the test infrastructure is setup so that there is always config present,
-            // but we want to overwrite the test to actually load config.example.js, so that any local changes
+            // but we want to overwrite the test to actually load config.js, so that any local changes
             // don't break the tests
             config.set({
                 paths: {

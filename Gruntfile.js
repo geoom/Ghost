@@ -781,7 +781,7 @@ var _              = require('lodash'),
         // #### Ensure Config *(Utility Task)*
         // Make sure that we have a `config.js` file when running tests
         // Ghost requires a `config.js` file to specify the database settings etc. Ghost comes with an example file:
-        // `config.example.js` which is copied and renamed to `config.js` by the bootstrap process
+        // `config.js` which is copied and renamed to `config.js` by the bootstrap process
         grunt.registerTask('ensureConfig', function () {
             var config = require('./core/server/config'),
                 done = this.async();

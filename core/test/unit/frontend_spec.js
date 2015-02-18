@@ -13,7 +13,7 @@ var moment   = require('moment'),
     frontend = rewire('../../server/controllers/frontend'),
     config   = require('../../server/config'),
     origConfig = _.cloneDeep(config),
-    defaultConfig  = require('../../../config.example')[process.env.NODE_ENV];
+    defaultConfig  = require('../../../config.js')[process.env.NODE_ENV];
 
 // To stop jshint complaining
 should.equal(true, true);
